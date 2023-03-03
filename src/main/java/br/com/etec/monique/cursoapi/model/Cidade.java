@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "curso")
-public class Curso {
+@Table(name = "cidade")
+
+public class Cidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nomecurso;
+    private String nomecidade;
 
     public Integer getId() {
         return id;
@@ -21,20 +22,20 @@ public class Curso {
         this.id = id;
     }
 
-    public String getNomecurso() {
-        return nomecurso;
+    public String getNomecidade() {
+        return nomecidade;
     }
 
-    public void setNomecurso(String nomecurso) {
-        this.nomecurso = nomecurso;
+    public void setNomecidade(String nomecidade) {
+        this.nomecidade = nomecidade;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Curso curso = (Curso) o;
-        return id.equals(curso.id);
+        Cidade cidade = (Cidade) o;
+        return id.equals(cidade.id);
     }
 
     @Override

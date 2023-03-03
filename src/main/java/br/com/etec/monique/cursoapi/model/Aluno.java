@@ -4,37 +4,35 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "curso")
-public class Curso {
-
+@Table(name ="curso")
+public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    private String nomecurso;
+    private String nomealuno;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNomecurso() {
-        return nomecurso;
+    public String getNomealuno() {
+        return nomealuno;
     }
-
-    public void setNomecurso(String nomecurso) {
-        this.nomecurso = nomecurso;
+    public void setNomealuno(String nomealuno) {
+        this.nomealuno = nomealuno;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Curso curso = (Curso) o;
-        return id.equals(curso.id);
+        Aluno aluno = (Aluno) o;
+        return id.equals(aluno.id);
     }
 
     @Override
