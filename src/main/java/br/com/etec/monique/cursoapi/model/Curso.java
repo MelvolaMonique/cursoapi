@@ -1,6 +1,8 @@
 package br.com.etec.monique.cursoapi.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +14,9 @@ public class Curso {
     private Integer id;
 
     private String nomecurso;
+
+    @OneToMany(mappedBy = "curso")
+    private List<Aluno> alunoscurso = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -29,7 +34,15 @@ public class Curso {
         this.nomecurso = nomecurso;
     }
 
-    @Override
+  public List<Aluno> getAlunoscurso() {
+    return alunoscurso;
+  }
+
+  public void setAlunoscurso(List<Aluno> alunoscurso) {
+    this.alunoscurso = alunoscurso;
+  }
+
+  @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

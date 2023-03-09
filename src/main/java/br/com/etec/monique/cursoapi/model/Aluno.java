@@ -4,13 +4,21 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name ="curso")
+@Table(name ="aluno")
 public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nomealuno;
+
+    @ManyToOne
+    @JoinColumn( name="idcurso")
+    private Curso curso;
+
+    @ManyToOne
+    @JoinColumn (name="idcidade")
+    private Cidade cidade;
 
     public Long getId() {
         return id;
@@ -20,7 +28,23 @@ public class Aluno {
         this.id = id;
     }
 
-    public String getNomealuno() {
+  public Curso getCurso() {
+    return curso;
+  }
+
+  public void setCurso(Curso curso) {
+    this.curso = curso;
+  }
+
+  public Cidade getCidade() {
+    return cidade;
+  }
+
+  public void setCidade(Cidade cidade) {
+    this.cidade = cidade;
+  }
+
+  public String getNomealuno() {
         return nomealuno;
     }
     public void setNomealuno(String nomealuno) {
