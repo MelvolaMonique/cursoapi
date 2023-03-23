@@ -1,5 +1,5 @@
-Create table Curso(
-  id int not null auto_increment primary key,
+Create table curso(
+  id int not null primary key auto_increment,
   nomecurso varchar(100)
 );
 

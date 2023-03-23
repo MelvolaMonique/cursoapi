@@ -1,6 +1,7 @@
-Create Table Cidade(
+Create Table cidade(
   id int not null auto_increment primary key,
   nomecidade varchar(100)
+  uf char(2)
 
 );
 
