@@ -17,19 +17,19 @@ public class Cidade {
 
     private String nomecidade;
 
-    private Spring uf;
+    private String uf;
     @OneToMany(mappedBy = "cidade")
     private List<Aluno> alunoscidade = new ArrayList<>();
 
-  public Spring getUf() {
-    return uf;
-  }
+    public String getUf() {
+        return uf;
+    }
 
-  public void setUf(Spring uf) {
-    this.uf = uf;
-  }
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
 
-  public List<Aluno> getAlunoscidade() {
+    public List<Aluno> getAlunoscidade() {
     return alunoscidade;
   }
 
