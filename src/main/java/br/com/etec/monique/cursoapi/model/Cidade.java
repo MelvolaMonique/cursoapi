@@ -1,5 +1,7 @@
 package br.com.etec.monique.cursoapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class Cidade {
     private String nomecidade;
 
     private String uf;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "cidade")
     private List<Aluno> alunoscidade = new ArrayList<>();
 

@@ -1,5 +1,7 @@
 package br.com.etec.monique.cursoapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Curso {
 
     private String nomecurso;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "curso")
     private List<Aluno> alunoscurso = new ArrayList<>();
 
