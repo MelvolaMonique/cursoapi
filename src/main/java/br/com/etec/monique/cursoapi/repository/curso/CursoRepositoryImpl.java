@@ -3,18 +3,21 @@ package br.com.etec.monique.cursoapi.repository.curso;
 
 import br.com.etec.monique.cursoapi.model.Curso;
 import br.com.etec.monique.cursoapi.repository.filter.CursoFilter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.util.Predicates;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CursoRepositoryImpl implements CursoRepositoryQuery{
 
@@ -31,17 +34,24 @@ public class CursoRepositoryImpl implements CursoRepositoryQuery{
   CriteriaQuery<Curso> criteria = builder.createQuery(Curso.class);
   Root<Curso> root = criteria.from(Curso.class);
 
-    Predicate[] predicates = criarRestrices(cursoFilter, builder, root);
+    Predicate[] predicates = criarRestricoes(cursoFilter, builder, root);
   criteria.where(predicates);
+  criteria.orderBy(builder.asc(root.get("nomecurso")));
 
+    TypedQuery<Curso> query = manager.createQuery(criteria);
     return null;
   }
 
-  private Predicate[] criarRestrices(CursoFilter cursoFilter, CriteriaBuilder builder, Root<Curso> root) {
+  private Predicate[] criarRestricoes(CursoFilter cursoFilter, CriteriaBuilder builder, Root<Curso> root) {
+//fazendo o like para filtrar com as palavras que escreverem maisculo se transformar em minusculo e ajudar na hora de achar o produto
+    List<Predicate> predicates = new ArrayList<>();
 
-    List<Predicates> predicates = new ArrayList<>();
+    if(!StringUtils.isEmpty(cursoFilter.getNomecurso())) {
+      predicates.add(builder.like(builder.lower(root.get("nomecurso")),
+        "%" + cursoFilter.getNomecurso().toLowerCase() + "%"));
 
-    if(StringUtils)
+    }
+    return predicates.toArray(new Predicate[predicates.size()]);
   }
 }
 
