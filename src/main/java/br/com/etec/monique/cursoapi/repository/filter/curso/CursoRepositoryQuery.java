@@ -1,4 +1,4 @@
-package br.com.etec.monique.cursoapi.repository.curso;
+package br.com.etec.monique.cursoapi.repository.filter.curso;
 
 import br.com.etec.monique.cursoapi.model.Curso;
 import br.com.etec.monique.cursoapi.repository.filter.CursoFilter;
