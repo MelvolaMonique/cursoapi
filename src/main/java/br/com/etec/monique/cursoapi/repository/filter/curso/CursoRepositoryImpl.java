@@ -68,6 +68,7 @@ public class CursoRepositoryImpl implements CursoRepositoryQuery{
 
   private Predicate[] criarRestricoes(CursoFilter cursoFilter, CriteriaBuilder builder, Root<Curso> root) {
 //fazendo o like para filtrar com as palavras que escreverem maisculo se transformar em minusculo e ajudar na hora de achar o produto
+
     List<Predicate> predicates = new ArrayList<>();
 
     if(!StringUtils.isEmpty(cursoFilter.getNomecurso())) {
