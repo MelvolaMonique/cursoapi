@@ -30,28 +30,27 @@ public class CidadeRepositoryImpl implements CidadeRepositoryQuery{
     CriteriaQuery<Cidade> criteria = builder.createQuery(Cidade.class);
     Root<Cidade> root = criteria.from(Cidade.class);
 
-    Predicate[] predicates = criarRestricoes(cidadeFilter, builder, root);
+    Predicate[] predicates = CriarRestricoes(cidadeFilter, builder, root);
     criteria.where(predicates);
     criteria.orderBy(builder.asc(root.get("nomecidade")));
 
     TypedQuery<Cidade> query = manager.createQuery(criteria);
     adicionarRestricoesDePaginacao(query, pageable);
-    return new PageImpl<>(query.getResultList(), pageable,total(cidadeFilter));
+    return new PageImpl<>(query.getResultList(), pageable, total(cidadeFilter));
   }
 
-  private Object total(CidadeFilter cidadeFilter) {
-
+  private Long total(CidadeFilter cidadeFilter){
     CriteriaBuilder builder = manager.getCriteriaBuilder();
     CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
     Root<Cidade> root = criteria.from(Cidade.class);
 
-    Predicate[] predicates = criarRestricoes(cidadeFilter, builder, root);
+    Predicate[] predicates = CriarRestricoes(cidadeFilter, builder, root);
     criteria.where(predicates);
     criteria.orderBy(builder.asc(root.get("nomecidade")));
 
     criteria.select(builder.count(root));
 
-   return  manager.createQuery(criteria). getSingleResult();
+    return  manager.createQuery(criteria). getSingleResult();
   }
 
   private void adicionarRestricoesDePaginacao(TypedQuery<Cidade> query, Pageable pageable) {
@@ -63,7 +62,7 @@ public class CidadeRepositoryImpl implements CidadeRepositoryQuery{
     query.setMaxResults(totalRegistrosPorDia);
   }
 
-  private Predicate[] criarRestricoes(CidadeFilter cidadeFilter, CriteriaBuilder builder, Root<Cidade> root) {
+  private Predicate[] CriarRestricoes(CidadeFilter cidadeFilter, CriteriaBuilder builder, Root<Cidade> root) {
     List<Predicate> predicates = new ArrayList<>();
 
     if (!StringUtils.isEmpty(cidadeFilter.getNomecidade())) {
@@ -71,8 +70,9 @@ public class CidadeRepositoryImpl implements CidadeRepositoryQuery{
         "%" + cidadeFilter.getNomecidade().toLowerCase() + "%"));
 
     }
-        return predicates.toArray(new Predicate[predicates.size()]);
+    return predicates.toArray(new Predicate[predicates.size()]);
+  }
   }
 
 
-}
+
