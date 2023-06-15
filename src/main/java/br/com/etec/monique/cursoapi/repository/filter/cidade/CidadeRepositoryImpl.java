@@ -2,7 +2,6 @@ package br.com.etec.monique.cursoapi.repository.filter.cidade;
 
 import br.com.etec.monique.cursoapi.model.Cidade;
 import br.com.etec.monique.cursoapi.repository.filter.CidadeFilter;
-import br.com.etec.monique.cursoapi.repository.filter.CursoFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
