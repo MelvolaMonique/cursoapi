@@ -55,7 +55,7 @@ public class AlunoRepositoryImpl implements AlunoRepositoryQuery {
 
     if (!StringUtils.isEmpty(alunoFilter.getNomealuno())) {
       predicates.add(builder.like(builder.lower(root.get("nomealuno")),
-        "%" + alunoFilter.getNomecidade().toLowerCase() + "%"));
+        "%" + alunoFilter.getNomealuno().toLowerCase() + "%"));
 
     }
     if (!StringUtils.isEmpty(alunoFilter.getNomecidade())) {
