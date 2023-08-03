@@ -47,7 +47,6 @@ public class AlunoRepositoryImpl implements AlunoRepositoryQuery {
     adicionarRestricoesDePaginacao(query, pageable);
 
     return new PageImpl<>(query.getResultList(), pageable, total(alunoFilter));
-
   }
 
   private Predicate[] criarRestricoes(AlunoFilter alunoFilter, CriteriaBuilder builder, Root<Aluno> root) {
